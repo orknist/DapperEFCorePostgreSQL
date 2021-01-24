@@ -45,18 +45,18 @@ namespace DapperEFCorePostgreSQL
             var productsCount = 0;
             for (var i = 1; i <= categoriesCount; i++)
             {
-                var category = new Category { CategoryName = $"Category {i:000000}", Products = new List<Product>() };
+                var products = new List<Product>();
                 for (var j = 1; j <= random.Next(100); j++)
                 {
                     productsCount++;
-                    category.Products.Add(new Product
+                    products.Add(new Product
                     {
                         Name = $"Product Name {productsCount:000000}",
                         Description = $"Product Description {productsCount:000000}",
                         Content = $"Product Content {productsCount:000000}",
                     });
                 }
-                sampleDbContext.Categories.Add(category);
+                sampleDbContext.Categories.Add(new Category { CategoryName = $"Category {i:000000}", Products = products });
             }
             sampleDbContext.SaveChanges();
             Console.WriteLine($"{categoriesCount} categories generated.");
@@ -66,12 +66,12 @@ namespace DapperEFCorePostgreSQL
 
         static void RunTests()
         {
-            //if(System.Diagnostics.Debugger.IsAttached)
-            //{
-            //    var testing = new PerformanceTesting();
-            //    testing.Dapper();
-            //    return;
-            //}
+            if (System.Diagnostics.Debugger.IsAttached)
+            {
+                var testing = new PerformanceTesting();
+                testing.Dapper_AutoMapper4();
+                return;
+            }
             BenchmarkRunner.Run<PerformanceTesting>();
         }
     }

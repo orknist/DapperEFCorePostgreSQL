@@ -8,6 +8,6 @@ namespace DapperEFCorePostgreSQL.Dtos
 
         public string CategoryName { get; set; }
 
-        public ICollection<ProductDto> Products { get; set; }
+        public IEnumerable<ProductDto> Products { get; set; }
     }
 }

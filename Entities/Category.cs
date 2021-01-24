@@ -13,6 +13,6 @@ namespace DapperEFCorePostgreSQL.Entities
 
         public DateTime CreateDate { get; set; }
 
-        public virtual ICollection<Product> Products { get; set; }
+        public virtual IEnumerable<Product> Products { get; set; }
     }
 }
